@@ -1,0 +1,156 @@
+/* Variables CSS: Paleta de colores del tema */
+:root{
+  --negro:#0A0A0A; --blanco:#FFFFFF; --rosa:#FF2DAC; --azul:#00E0FF;
+  --gris-claro:#F5F5F5; --gris-medio:#9E9E9E;
+}
+
+/* Reset básico y configuración global */
+*{box-sizing:border-box}
+html,body{height:100%}
+
+/* Estilos del cuerpo: Fondo con imagen y gradiente */
+body{
+  margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  color:var(--blanco);
+  background:
+    linear-gradient(180deg, rgba(10,10,10,.35) 0%, rgba(10,10,10,.75) 70%, rgba(10,10,10,.9) 100%),
+    url('assets/bg.jpg') center/cover no-repeat,   /* ← sin 'fixed' */
+    #06161c;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sección Hero: Logo principal centrado con efecto de sombra */
+.hero{
+  display:grid; place-items:center;
+  padding-top:56px; /* baja todo un poco */
+}
+.hero img{
+  width:min(260px, 60vw); /* usa tu logo 1080 pero limita en pantalla */
+  filter:drop-shadow(0 0 36px rgba(0,224,255,.25));
+}
+
+/* Contenido principal: Ancho limitado y centrado */
+.content{
+  width:min(100%, 460px);  /* más finito */
+  margin:18px auto 0;   /* ← Sin margin-bottom */
+  padding:0 18px 5vh;   /* ← El padding-bottom mantiene el fondo */
+  flex: 1; /* Ocupa el espacio disponible */
+}
+/* Título principal de los formularios */
+.title{ margin:6px 0 18px; font-size:28px; color:#fff; }
+
+/* Área de alertas: Mensajes de error con fondo rojo claro */
+.alert{
+  background:#ffe8ec; color:#b00020; border:1px solid #ffc2cf;
+  padding:10px 12px; border-radius:10px; margin:0 0 14px;
+}
+
+/* Paneles de formularios: Solo se muestra el activo */
+.panel{ display:none; }
+.panel.is-active{ display:block; }
+
+/* Inputs minimalistas */
+.field{display:grid; gap:6px; margin-bottom:14px}
+label{font-size:.95rem; color:#fff; font-weight:600}
+input[type="email"], input[type="password"], input[type="text"]{
+  width:100%; padding:12px 4px; border:none; border-bottom:2px solid rgba(255,255,255,.35);
+  background:transparent; color:#fff; outline:none; transition:border-color .2s, box-shadow .2s;
+}
+input::placeholder{color:rgba(255,255,255,.6)}
+input:focus{
+  border-bottom-color:var(--azul);
+  box-shadow:0 3px 0 -2px var(--azul);
+}
+
+.row{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin:6px 0 14px; }
+.checkbox{ display:flex; align-items:center; gap:8px; color:#fff; font-size:.92rem; }
+
+/* Botones: Estilos principales y secundarios */
+.btn{
+  border:none; cursor:pointer; font-weight:800; padding:12px 18px; border-radius:12px;
+  transition: all .2s;
+}
+.btn.primary{ 
+  background:var(--rosa); 
+  color:#fff; 
+}
+.btn.primary:hover{ 
+  filter:brightness(1.05); 
+}
+.btn.secondary{ 
+  background:rgba(255,255,255,.1); 
+  color:#fff; 
+  border:1px solid rgba(255,255,255,.25);
+}
+.btn.secondary:hover{ 
+  background:rgba(255,255,255,.2); 
+  border-color:rgba(255,255,255,.4);
+}
+
+/* Fila de botones: Botón principal y alternativos al lado */
+.button-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+.button-group{
+  display: flex;
+  gap: 8px;
+}
+
+.link{ background:none; border:none; color:var(--azul); cursor:pointer; font-weight:700; padding:0; }
+.foot{ margin-top:12px; font-size:.95rem; color:#fff; }
+
+/* Footer: Cierre visual de la página */
+.footer{
+  background: rgba(0,0,0,.8);
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 24px 0;
+  margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
+.footer-content{
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0 18px;
+  text-align: center;
+}
+
+.footer-content p{
+  margin: 0 0 12px 0;
+  font-size: .85rem;
+  color: rgba(255,255,255,.7);
+}
+
+.footer-links{
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-link{
+  color: var(--azul);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 600;
+  transition: color .2s;
+}
+
+.footer-link:hover{
+  color: #fff;
+}
+
+/* Responsive: En pantallas pequeñas, apilar botones */
+@media (max-width: 480px) {
+  .button-row{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .button-group{
+    justify-content: center;
+  }
+}

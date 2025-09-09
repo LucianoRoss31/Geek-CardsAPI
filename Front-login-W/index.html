@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <!-- Configuración básica del documento HTML -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Geek Card · Autenticación</title>
+  <!-- Enlaces a archivos CSS y JavaScript -->
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <!-- Sección Hero: Logo principal de la aplicación -->
+  <section class="hero" aria-label="Geek Card">
+    <img src="assets/logo-hero.png" alt="Geek Card" />
+  </section>
+
+  <!-- Contenido principal: Formularios de autenticación -->
+  <main class="content" role="main" aria-labelledby="title">
+    <!-- Área de alertas: Muestra mensajes de error o éxito -->
+    <section id="alert" class="alert" role="alert" hidden></section>
+
+    <!-- Formulario de Inicio de Sesión -->
+    <form id="form-login" class="panel is-active" autocomplete="on" novalidate>
+      <h1 id="title" class="title">Bienvenido</h1>
+      <!-- Campo de email -->
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input id="login-email" name="email" type="email" placeholder="tu@email.com" required />
+      </div>
+      <!-- Campo de contraseña -->
+      <div class="field">
+        <label for="login-pass">Contraseña</label>
+        <input id="login-pass" name="password" type="password" placeholder="••••••••" minlength="8" required />
+      </div>
+      <!-- Opciones adicionales: recordar usuario y recuperar contraseña -->
+      <div class="row">
+        <label class="checkbox"><input type="checkbox" name="remember" /> Recordarme</label>
+        <button class="link" type="button" id="forgot">¿Olvidaste tu contraseña?</button>
+      </div>
+      <!-- Fila de botones: Principal y alternativos -->
+      <div class="button-row">
+        <button class="btn primary" type="submit">Entrar</button>
+        <div class="button-group">
+          <button class="btn secondary" type="button" data-tab="register">Registrarse</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Formulario de Registro -->
+    <form id="form-register" class="panel" autocomplete="on" novalidate>
+      <h1 class="title">Crear cuenta</h1>
+      <!-- Campo de nombre completo -->
+      <div class="field">
+        <label for="reg-name">Nombre</label>
+        <input id="reg-name" name="name" type="text" placeholder="Tu nombre" required />
+      </div>
+      <!-- Campo de email -->
+      <div class="field">
+        <label for="reg-email">Email</label>
+        <input id="reg-email" name="email" type="email" placeholder="tu@email.com" required />
+      </div>
+      <!-- Campo de contraseña -->
+      <div class="field">
+        <label for="reg-pass">Contraseña</label>
+        <input id="reg-pass" name="password" type="password" placeholder="mín. 8 caracteres" minlength="8" required />
+      </div>
+      <!-- Campo de confirmación de contraseña -->
+      <div class="field">
+        <label for="reg-pass2">Repetir contraseña</label>
+        <input id="reg-pass2" name="password_confirm" type="password" placeholder="repetí la contraseña" minlength="8" required />
+      </div>
+      <!-- Fila de botones: Principal y alternativos -->
+      <div class="button-row">
+        <button class="btn primary" type="submit">Crear cuenta</button>
+        <div class="button-group">
+          <button class="btn secondary" type="button" data-tab="login">Iniciar sesión</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer: Cierre visual de la página -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2024 Geek Card. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Términos de servicio</a>
+        <a href="#" class="footer-link">Privacidad</a>
+        <a href="#" class="footer-link">Soporte</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
