@@ -1,18 +1,23 @@
 input{
     margin-left: 10px;
     margin-bottom: 15px;
-    padding: 5px;
-    padding-right: 6cm;
+    padding: 10px;
     border-style: none;
     border-radius: 5px;
+    width: 10cm;
 }
 
-button{
+button.navbutton{
     margin-left: 10px;
-    padding: 5px;
+    padding: 9px;
     border-style: none;
     border-radius: 5px;
-    background-color: #3700ff;
+    background-color: #782083;
     color: white;
     font-weight: bold;
+}
+
+button.navbutton:hover{
+    background-color: #ffffff;
+    color: #782083;
 }

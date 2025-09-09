@@ -8,13 +8,18 @@
 }
 
 header {
-  background: #40a2fe;
+  background: #0A0A0A;
   color: #fff;
   padding: 24px 0;
   text-align: left;
   box-shadow: 0 10px 8px rgba(0,0,0,0.08);
   font-family: 'Roboto', sans-serif;
   margin-left: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
 }
 
 header h1 {
@@ -24,7 +29,7 @@ header h1 {
   letter-spacing: 2px;
 }
 
-header a {
+.opciones {
   color: #fff;
   text-decoration: none;
   margin: 0 18px;
@@ -32,7 +37,47 @@ header a {
   transition: color 0.2s;
 }
 
-header a:hover {
+img.logo {
+  height: 2cm;
+  border-radius: 100px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+a.cart{
+  font-size: 20px;
   color: #fff;
-  text-decoration: underline;
+  margin-right: 15px;
+}
+
+.login-buttons {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.login-buttons button {
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.register-btn {
+  background-color: #0A0A0A;
+  border: 2px solid #782083;
+  color: #782083;
+}
+
+.login-btn {
+  border: 2px solid #782083;
+  background-color: #782083;
+  color: #ffffff;
+}
+
+.register-btn:hover, .login-btn:hover {
+  background-color: #ffffff;
+  color: #782083;
 }

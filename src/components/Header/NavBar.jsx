@@ -4,8 +4,8 @@ import './NavBar.css'
 export const NavBar = () => {
   return (
     <div>
-    <input type="text" placeholder='Busca la carta que buscas'/>
-    <button>Buscar</button>
+    <input type="text" placeholder='Encuentra la carta que buscas'/>
+    <button className='navbutton'><b>Buscar</b></button>
     </div>
   )
 }
