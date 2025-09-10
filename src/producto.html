@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazo Yu-Gi-Oh! - Detalles del producto</title>
+    <link rel="stylesheet" href="componentsHeader/Header.css">
+    <link rel="stylesheet" href="componentsHeader/NavBar.css">
+    <link rel="stylesheet" href="producto.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainImage = document.querySelector('.main-image');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function () {
+                    mainImage.src = this.src;
+                    mainImage.alt = this.alt;
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="explore-container">
+        <header class="header">
+            <div class="header-content">
+                <a href="">
+                    <img class="logo" src="assets/img/Logo.png" alt="Logo">
+                </a>
+                <h1>Geek Cards</h1>
+                <div class="search-container">
+                    <input type="text" placeholder="Encuentra la carta que buscas">
+                    <button class="navbutton">Buscar</button>
+                </div>
+                <div class="login-buttons">
+                    <a href="" class="cart"><i class="bi bi-cart"></i></a>
+                    <button class="register-btn">Registrarse</button>
+                    <button class="login-btn">Iniciar Sesión</button>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="" class="opciones"><b>Inicio</b></a>
+                <a href="" class="opciones"><b>Articulos mas vendidos</b></a>
+                <a href="" class="opciones"><b>Novedades</b></a>
+                <a href="" class="opciones"><b>Ofertas</b></a>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <div class="product-container">
+                <div class="product-images">
+                    <img src="assets/img/pack30.jpg" alt="Pack de cartas Yu-Gi-Oh!" class="main-image">
+                    <div class="thumbnail-container">
+                        <img src="assets/img/pack30.jpg" alt="Pack de 30 cartas mixtas" class="thumbnail">
+                        <img src="assets/img/maquinaria.jpg" alt="Carta Maquinaria Ciudadela" class="thumbnail">
+                        <img src="assets/img/cartas-stack.jpg" alt="Stack de cartas" class="thumbnail">
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1 class="product-title">Mazo Yu-Gi-Oh! - 30 Cartas Mixtas con Holográficas</h1>
+
+                    <div class="price-container">
+                        <div class="original-price">$21.998</div>
+                        <div class="current-price">$10.999</div>
+                        <div class="discount">50% OFF</div>
+                    </div>
+
+                    <div class="shipping-info">
+                        <span>Envío gratis</span> a todo el país
+                    </div>
+
+                    <div class="quantity-selector">
+                        Cantidad:
+                        <select>
+                            <option>1 unidad</option>
+                            <option>2 unidades</option>
+                            <option>3 unidades</option>
+                            <option>4 unidades</option>
+                            <option>5 unidades</option>
+                        </select>
+                    </div>
+
+                    <button class="buy-button">Comprar ahora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
