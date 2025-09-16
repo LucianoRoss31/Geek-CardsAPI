@@ -7,7 +7,7 @@ body {
 .product-card {
   display: inline-block;
   vertical-align: top;
-  background: #FFFFFF;
+  background: #052b6567;
   color: #333333;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -20,7 +20,10 @@ body {
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  background-color: #28477767;
+  box-shadow: 10px 6px 16px rgba(211, 0, 193, 0.541);
+  border-style: solid;
+  border-color: #D300C1;
 }
 
 .card-image {
@@ -34,13 +37,13 @@ body {
 .card-title {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #222222;
+  color: #ffffff;
   margin: 10px 0;
 }
 
 .card-type {
   font-size: 0.9rem;
-  color: #666666;
+  color: #ffffff;
   margin: 5px 0;
 }
 

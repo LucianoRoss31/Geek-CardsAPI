@@ -1,12 +1,14 @@
-import { NavBar } from "./NavBar"
-import { Link, useLocation } from 'react-router-dom'
+import { NavBar } from "./NavBar";
+import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import ImgLogo from '../../assets/img/Logo.png'
-import './Header.css'
+import ImgLogo from '../../assets/img/Logo.png';
+import { useCarrito } from '../../context/CarritoContext.jsx'; 
+import './Header.css';
 
 export const Header = ({ isAuthenticated, user, onLogout }) => {
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
+  const { totalItems } = useCarrito();
 
   return (
     <header>
@@ -18,6 +20,7 @@ export const Header = ({ isAuthenticated, user, onLogout }) => {
         <div className="login-buttons">
           <Link to="/carrito" className="cart">
             <i className="bi bi-cart"></i>
+            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
           </Link>
           {isAuthenticated ? (
             <div className="user-menu">
@@ -32,25 +35,24 @@ export const Header = ({ isAuthenticated, user, onLogout }) => {
           ) : (
             <>
               <button onClick={() => navigate("/auth/register")} className="register-btn">Registrarse</button>
-              
               <button onClick={() => navigate("/auth/login")} className="login-btn">Iniciar Sesion</button>
             </>
           )}
         </div>
       </div>
-        
-        <Link to="/" className={`opciones ${location.pathname === '/' ? 'active' : ''}`}>
-          <b>Inicio</b>
-        </Link>
-        <Link to="/explore" className={`opciones ${location.pathname === '/explore' ? 'active' : ''}`}>
-          <b>Explorar Cartas</b>
-        </Link>
-        <Link to="/ofertas" className={`opciones ${location.pathname === '/ofertas' ? 'active' : ''}`}>
-          <b>Ofertas</b>
-        </Link>
-        <Link to="/novedades" className={`opciones ${location.pathname === '/novedades' ? 'active' : ''}`}>
-          <b>Novedades</b>
-        </Link>
+
+      <Link to="/" className={`opciones ${location.pathname === '/' ? 'active' : ''}`}>
+        <b>Inicio</b>
+      </Link>
+      <Link to="/explore" className={`opciones ${location.pathname === '/explore' ? 'active' : ''}`}>
+        <b>Explorar Cartas</b>
+      </Link>
+      <Link to="/ofertas" className={`opciones ${location.pathname === '/ofertas' ? 'active' : ''}`}>
+        <b>Ofertas</b>
+      </Link>
+      <Link to="/novedades" className={`opciones ${location.pathname === '/novedades' ? 'active' : ''}`}>
+        <b>Novedades</b>
+      </Link>
     </header>
-  )
-}
+  );
+};

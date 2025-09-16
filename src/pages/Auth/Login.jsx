@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'; 
+import { useLocation, useNavigate } from "react-router-dom";
 import './Auth.css';
 
 const Login = ({ onLogin, onSwitchToRegister }) => {
     const navigate = useNavigate();
+    const location = useLocation(); 
+    
+    const from = location.state?.from?.pathname || null; 
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -18,7 +22,6 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
             ...prev,
             [name]: type === 'checkbox' ? checked : value
         }));
-        // Limpiar alerta cuando el usuario empiece a escribir
         if (alert) setAlert('');
     };
 
@@ -36,32 +39,30 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
         // Simular delay de red
         setTimeout(() => {
             try {
-                // Obtener usuarios del localStorage
                 const savedUsers = localStorage.getItem('geekCardsUsers');
                 const users = savedUsers ? JSON.parse(savedUsers) : [];
 
-                // Buscar usuario
                 const user = users.find(u => u.email === formData.email && u.password === formData.password);
 
                 if (user) {
                     console.log('[LOGIN SUCCESS]', user);
                     setAlert('¡Login exitoso! Redirigiendo...');
                     
-                    // Guardar sesión si "recordarme" está marcado
+                    // Guardar sesión
                     if (formData.remember) {
                         localStorage.setItem('geekCardsCurrentUser', JSON.stringify(user));
                     } else {
                         sessionStorage.setItem('geekCardsCurrentUser', JSON.stringify(user));
                     }
 
-                    // Llamar callback si existe
-                    if (onLogin) {
-                        onLogin(user);
-                    }
+                    if (onLogin) onLogin(user);
 
-                    // Redirigir después de 1.5 segundos
                     setTimeout(() => {
-                        navigate('/');
+                        if (from === '/checkout') {
+                            navigate(from, { replace: true });
+                        } else {
+                            navigate('/', { replace: true });
+                        }
                     }, 1500);
 
                 } else {

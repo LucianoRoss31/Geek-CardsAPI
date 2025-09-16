@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './MiCuenta.css';
+import './ventas.css';
 
 const avatarPlaceholder = "https://ui-avatars.com/api/?name=Usuario";
 
@@ -12,11 +13,10 @@ export default function MiCuenta({ user, onLogout }) {
   const [calificaciones, setCalificaciones] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
-    setError(null);
-    
-    // Simular carga de datos
-    setTimeout(() => {
+    const loadProfileData = async () => {
+      setLoading(true);
+      setError(null);
+      
       try {
         // Usar datos del usuario logueado si están disponibles
         const userData = user || {
@@ -30,24 +30,36 @@ export default function MiCuenta({ user, onLogout }) {
           avatar: avatarPlaceholder,
         });
 
-        // Datos simulados de compras y ventas
+        // Cargar compras simuladas
         setCompras([
           { nombre: "Carta Dragón", precio: "$1500", fecha: "2025-08-01" },
           { nombre: "Carta Fénix", precio: "$1200", fecha: "2025-07-15" },
         ]);
 
-        setVentas([
-          { nombre: "Carta Mago", estado: "Publicado", precio: "$900" },
-          { nombre: "Carta Guerrero", estado: "Vendida", precio: "$1100" },
-        ]);
+        // Cargar ventas activas desde localStorage
+        const savedListings = localStorage.getItem('activeListings');
+        const activeListings = savedListings ? JSON.parse(savedListings) : [];
+        
+        // Convertir las ventas activas al formato esperado
+        const formattedListings = activeListings.map(listing => ({
+          id: listing.id,
+          nombre: listing.name,
+          precio: `$${listing.price}`,
+          estado: "En curso",
+          fecha: listing.date,
+          imagen: listing.image
+        }));
 
+        setVentas(formattedListings);
         setCalificaciones({ promedio: 4.7, total: 23 });
-        setLoading(false);
       } catch (err) {
         setError("Error al cargar los datos del perfil");
+      } finally {
         setLoading(false);
       }
-    }, 1200);
+    };
+
+    loadProfileData();
   }, [user]);
 
   const handleLogout = () => {
@@ -92,15 +104,23 @@ export default function MiCuenta({ user, onLogout }) {
       <section className="cuenta-ventas">
         <h4>Mis Ventas</h4>
         {ventas.length === 0 ? (
-          <p>No hay datos disponibles</p>
+          <p>No hay ventas activas</p>
         ) : (
-          <ul>
-            {ventas.map((v, i) => (
-              <li key={i}>
-                <strong>{v.nombre}</strong> — {v.estado} — {v.precio}
-              </li>
+          <div className="ventas-grid">
+            {ventas.map((venta) => (
+              <div key={venta.id} className="venta-card">
+                <img src={venta.imagen} alt={venta.nombre} className="venta-imagen" />
+                <div className="venta-info">
+                  <h5>{venta.nombre}</h5>
+                  <p className="venta-precio">{venta.precio}</p>
+                  <span className={`venta-estado ${venta.estado.toLowerCase().replace(' ', '-')}`}>
+                    {venta.estado}
+                  </span>
+                  <p className="venta-fecha">Publicado: {venta.fecha}</p>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </section>
       <section className="cuenta-calificaciones">

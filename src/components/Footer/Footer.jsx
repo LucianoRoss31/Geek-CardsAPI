@@ -41,10 +41,8 @@ const Footer = () => {
               e.preventDefault();
               handleNavigation('/');
             }}>Inicio</Link>
-            <Link to="/explorar" className="footer-link" onClick={(e) => {
-              e.preventDefault();
-              handleNavigation('/explorar');
-            }}>Explorar cartas</Link>
+            <Link to="/explore" className="footer-link">Explorar cartas</Link>
+            <Link to="/sell-cards" className="footer-link">Vender cartas</Link>
           </div>
         </div>
 

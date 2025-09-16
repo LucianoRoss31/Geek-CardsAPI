@@ -7,6 +7,11 @@ import Explore from './pages/Explore/Explore'
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
 import MiCuenta from './pages/Profile/MiCuenta'
+import { CarritoProvider } from './context/CarritoContext'
+import Carrito from './pages/Carrito/Carrito'
+import Checkout from './pages/Checkout/Checkout'
+import RequireLoginModal from "./pages/Auth/RequireLoginModal"
+import SellCards from './pages/SellCards/SellCards'
 import './App.css'
 
 function App() {
@@ -48,50 +53,55 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <Header 
-          isAuthenticated={isAuthenticated} 
-          user={user} 
-          onLogout={handleLogout} 
-        />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route 
-              path="/auth/login" 
-              element={
-                <Login 
-                  onLogin={handleLogin}
-                  onSwitchToRegister={() => window.location.href = '/auth/register'}
-                />
-              } 
-            />
-            <Route 
-              path="/auth/register" 
-              element={
-                <Register 
-                  onRegister={handleRegister}
-                  onSwitchToLogin={() => window.location.href = '/auth/login'}
-                />
-              } 
-            />
-            <Route 
-              path="/perfil" 
-              element={
-                <MiCuenta 
-                  user={user}
-                  onLogout={handleLogout}
-                />
-              } 
-            />
-            <Route path="/ofertas" element={<div className="page-placeholder"><h1>Ofertas</h1><p>Página en construcción</p></div>} />
-            <Route path="/novedades" element={<div className="page-placeholder"><h1>Novedades</h1><p>Página en construcción</p></div>} />
-            <Route path="/carrito" element={<div className="page-placeholder"><h1>Carrito</h1><p>Página en construcción</p></div>} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <CarritoProvider>
+        <div className="App">
+         <Header 
+            isAuthenticated={isAuthenticated} 
+            user={user} 
+            onLogout={handleLogout} 
+          />
+          <main>
+            <Routes>
+             <Route path="/" element={<Home />} />
+             <Route path="/explore" element={<Explore />} />
+              <Route 
+                path="/auth/login" 
+                element={
+                  <Login 
+                    onLogin={handleLogin}
+                    onSwitchToRegister={() => window.location.href = '/auth/register'}
+                  />
+                } 
+              />
+              <Route 
+                path="/auth/register" 
+                element={
+                  <Register 
+                    onRegister={handleRegister}
+                    onSwitchToLogin={() => window.location.href = '/auth/login'}
+                  />
+                } 
+              />
+              <Route 
+                path="/perfil" 
+                element={
+                  <MiCuenta 
+                    user={user}
+                    onLogout={handleLogout}
+                  />
+                } 
+              />
+              <Route path="/ofertas" element={<div className="page-placeholder"><h1>Ofertas</h1><p>Página en construcción</p></div>} />
+              <Route path="/novedades" element={<div className="page-placeholder"><h1>Novedades</h1><p>Página en construcción</p></div>} />
+              <Route path="/carrito" element={<Carrito />} />
+              <Route path="/sell-cards" element={<RequireLoginModal isAuthenticated={isAuthenticated}><SellCards /></RequireLoginModal>} />
+              <Route path="/checkout" element={<RequireLoginModal isAuthenticated={isAuthenticated}> <Checkout /></RequireLoginModal>}
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </CarritoProvider>
     </Router>
   )
 }
